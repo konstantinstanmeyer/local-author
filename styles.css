@@ -186,6 +186,7 @@ section.visible {
     font-weight: 400;
     line-height: 0.9;
     margin-bottom: 0.25rem;
+    text-decoration:none;
 }
 
 .hero-title--italic {
