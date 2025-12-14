@@ -473,17 +473,25 @@ section.visible {
     /* z-index: 30; */
 }
 
-#book-1{
-    left: -10%;
-    /* z-index: 50; */
+@media (min-width: 600px) {
+    .book-info {
+        left: 100%;
+    }
 }
 
-#book-2 {
-    left: -40%;
-}
+@media (max-width: 600px) {
+    #book-1 {
+        left: -10%;
+        /* z-index: 50; */
+    }
 
-#book-3 {
+    #book-2 {
+        left: -40%;
+    }
 
+    #book-3 {
+
+    }
 }
 
 .book-spine:hover .book-info,
