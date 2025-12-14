@@ -31,8 +31,11 @@ body {
     color: var(--color-paper);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: none;
     width: 100vw;
+}
+
+.no-cursor {
+    cursor: none;
 }
 
 a {

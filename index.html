@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="no-cursor">
     <div class="cursor" id="cursor"></div>
 
     <section class="hero visible" id="hero">
@@ -196,6 +196,7 @@
     <script>
         const supportsCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
         const cursor = document.getElementById('cursor');
+        const body = document.body;
 
         if(supportsCursor) {
             cursor.classList?.remove("hide-cursor");
@@ -221,6 +222,7 @@
                 el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
             });
         } else {
+            body,classList.remove("no-cursor")
             cursor.classList.add("hide-cursor")
         }
 
