@@ -91,7 +91,7 @@
         <div class="bookshelf">
             <div class="book-spine book-spine--rust hoverable">
                 <span class="book-spine-title">The Weight of Belonging</span>
-                <div class="book-info">
+                <div id="book-1" class="book-info">
                     <h3 class="book-info-title">The Weight of Belonging</h3>
                     <p class="book-info-meta">Novel — 2018</p>
                     <p class="book-info-description">Three siblings return to Lagos for their father's funeral, each carrying secrets that will reshape their understanding of family, duty, and freedom.</p>
@@ -100,7 +100,7 @@
 
             <div class="book-spine book-spine--sage hoverable">
                 <span class="book-spine-title">Minor Seasons</span>
-                <div class="book-info">
+                <div id="book-2" class="book-info">
                     <h3 class="book-info-title">Minor Seasons</h3>
                     <p class="book-info-meta">Stories — 2022</p>
                     <p class="book-info-description">Eleven stories spanning continents, connected by invisible threads of longing, displacement, and the small violences of everyday life.</p>
@@ -109,7 +109,7 @@
 
             <div class="book-spine book-spine--paper hoverable">
                 <span class="book-spine-title">What the River Knows</span>
-                <div class="book-info">
+                <div id="book-3" class="book-info">
                     <h3 class="book-info-title">What the River Knows</h3>
                     <p class="book-info-meta">Novel — 2025</p>
                     <p class="book-info-description">A debut exploring memory, myth, and a woman's journey to uncover her grandmother's buried history in the Niger Delta.</p>
@@ -194,28 +194,35 @@
     </section>
 
     <script>
+        const supportsCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
         const cursor = document.getElementById('cursor');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+        if(supportsCursor) {
+            cursor.classList?.remove("hide-cursor");
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
 
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-            cursor.style.left = cursorX - 10 + 'px';
-            cursor.style.top = cursorY - 10 + 'px';
-            requestAnimationFrame(animateCursor);
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.15;
+                cursorY += (mouseY - cursorY) * 0.15;
+                cursor.style.left = cursorX - 10 + 'px';
+                cursor.style.top = cursorY - 10 + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            document.querySelectorAll('.hoverable, a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+            });
+        } else {
+            cursor.classList.add("hide-cursor")
         }
-        animateCursor();
-
-        document.querySelectorAll('.hoverable, a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-        });
 
         const sections = document.querySelectorAll('section');
         const navDots = document.querySelectorAll('.nav-dot');
