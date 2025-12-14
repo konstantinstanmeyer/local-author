@@ -262,6 +262,32 @@
                 letter.style.transform = `translateY(${scrolled * speed}px)`;
             });
         });
+
+        // refactored info handling for mobile and desktop
+        const bookSpines = document.querySelectorAll('.book-spine');
+        const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+        bookSpines.forEach(spine => {
+            spine.addEventListener('click', (e) => {
+                if (canHover) return; // exit function if cursor is present
+                
+                // .stopPropagation() stops parent element from event changes, disallowing events from "bubbling up"
+                e.stopPropagation();
+                const isActive = spine.classList.contains('active');
+                
+                bookSpines.forEach(s => s.classList.remove('active'));
+                if (!isActive) spine.classList.add('active');
+            });
+        });
+
+        // Mobile handling for tapping document body
+        if (!canHover) {
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.book-spine')) {
+                    bookSpines.forEach(s => s.classList.remove('active'));
+                }
+            });
+        }
     </script>
 </body>
 </html>

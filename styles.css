@@ -12,7 +12,6 @@
     --transition-bounce: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset & Base */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -61,7 +60,6 @@ a {
     border-radius: 3px;
 }
 
-/* Custom Cursor */
 .cursor {
     width: 20px;
     height: 20px;
@@ -83,7 +81,6 @@ a {
     display: none;
 }
 
-/* Animations */
 @keyframes drift {
     0% { transform: translate(0, 0) rotate(0deg); }
     25% { transform: translate(10px, -15px) rotate(2deg); }
@@ -488,8 +485,15 @@ section.visible {
 
 }
 
-.book-spine:hover .book-info {
+.book-spine:hover .book-info,
+.book-spine.active .book-info {
     opacity: 1;
+}
+
+.book-spine.active {
+    transform: rotateY(-30deg) translateX(20px);
+    box-shadow: -20px 0 40px rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
 .book-info-title {
@@ -719,7 +723,6 @@ section.visible {
     margin-top: 0.5rem;
 }
 
-/* Contact Footer */
 .contact-footer {
     margin-top: 6rem;
     padding-top: 3rem;
